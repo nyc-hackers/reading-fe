@@ -1,0 +1,3 @@
+:plain
+  module.exports = (config) ->
+    # TODO: Initialization goes here

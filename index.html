@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html ng-app="elFrontend">
+  <head>
+
+  </head>
+
+  <body>
+    <section ng-controller="showUnread">
+      <h1> Unread Articles </h1>
+      <div ng-repeat="article in unreadArticles">
+        <h2> {{ article.title }} </h2>
+        <a ng-href="{{article.url}}" target="_blank">{{article.url}} ({{article.id}})</a>
+      </div>
+    </section>
+
+    <script type="text/javascript" charset="utf-8" src="/public/js/libraries-reading-list-0.0.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/public/js/app.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,11 @@
+./src
+./node_modules
+./test
+./docs
+./experiments
+./Cakefile
+./Nemfile
+./.gitignore
+./.git
+*.sublime-project
+*.sublime-workspace
