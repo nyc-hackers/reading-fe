@@ -10,7 +10,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "neat": "^1.2.2"
   },
-  "prodDependencies" : [
+  "prodDependencies": [
     "angular",
     "bourbon",
     "neat"

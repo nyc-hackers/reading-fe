@@ -1,18 +1,28 @@
 <!DOCTYPE HTML>
 <html ng-app="elFrontend">
   <head>
+    <style type="text/css" media="all">
+      #article-list {
+        width: 50%;
+        margin: 20px auto;
+      }
+    </style>
 
   </head>
 
   <body>
-    <section ng-controller="showUnread">
+    <section ng-controller="showUnread" id="article-list">
       <h1> Unread Articles </h1>
-      <div ng-repeat="article in unreadArticles">
+      <div ng-repeat="article in unreadArticles" class="article">
         <h2> {{ article.title }} </h2>
         <a ng-href="{{article.url}}" target="_blank">{{article.url}} ({{article.id}})</a>
+        <a data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="add"> Add 2</a>
+        <a data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="reject"> reject 2</a>
+        <hr />
       </div>
     </section>
 
+    <script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="/public/js/libraries-reading-list-0.0.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="/public/js/app.js"></script>
   </body>
