@@ -11,8 +11,8 @@ module.exports = function(grunt) {
       },
     },
     watch: {
-      files: ['<%= jshint.files %>', 'js/**/*.js'],
-      tasks: ['jshint', 'concat']
+      files: ['<%= jshint.files %>', 'js/**/*.js', 'css/**/*.scss'],
+      tasks: ['jshint', 'concat', 'sass']
     },
     concat: {
         options: {
@@ -30,13 +30,24 @@ module.exports = function(grunt) {
           // the location of the resulting JS file
           dest: 'public/js/libraries-<%= pkg.name %>-<%= pkg.version %>.js'
         }
+    },
+    sass : {
+      options: {
+        sourceMap: false
+      },
+      dist: {
+        files: {
+          "public/css/app.css" : 'css/app.scss'
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-sass');
 
-  grunt.registerTask('default', ['jshint', 'concat']);
+  grunt.registerTask('default', ['jshint', 'concat', 'sass']);
 
 };

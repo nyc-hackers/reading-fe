@@ -1,23 +1,27 @@
 <!DOCTYPE HTML>
 <html ng-app="elFrontend">
   <head>
-    <style type="text/css" media="all">
-      #article-list {
-        width: 50%;
-        margin: 20px auto;
-      }
-    </style>
-
+    <title>Articles To Read</title>
+    <link rel="stylesheet" href="/public/css/app.css" media="all" />
   </head>
 
   <body>
     <section ng-controller="showUnread" id="article-list">
       <h1> Unread Articles </h1>
-      <div ng-repeat="article in unreadArticles" class="article">
-        <h2> {{ article.title }} </h2>
-        <a ng-href="{{article.url}}" target="_blank">{{article.url}} ({{article.id}})</a>
-        <a data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="add"> Add 2</a>
-        <a data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="reject"> reject 2</a>
+
+      <div ng-repeat="article in unreadArticles" class="article comment">
+        <div class="comment-image">
+        </div>
+
+        <div class="comment-content">
+          <h2> {{ article.title }} </h2>
+          <a ng-href="{{article.url}}" target="_blank">{{article.url}} ({{article.id}})</a>
+
+          <div class='add-reject'>
+            <button data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="add"> Add </button>
+            <button data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="reject"> Reject</button>
+          </div>
+        </div>
         <hr />
       </div>
     </section>

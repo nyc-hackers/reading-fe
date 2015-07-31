@@ -21,7 +21,7 @@ elFrontend.directive('acceptLink', function(Article) {
         articleFunction(scope.articleId).then(
           //success
           function(resp) {
-          $(elem).parent(".article").remove();
+          $(elem).parents(".article").first().remove();
           console.log("article update", resp.data);
           },
           // failure

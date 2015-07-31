@@ -1,0 +1,16 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "base/base";
+
+#article-list {
+  @include outer-container;
+  width: 50%;
+  margin: 20px auto;
+
+  h1 {
+    text-align: center;
+  }
+
+  .article {
+  }
+}
