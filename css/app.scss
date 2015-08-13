@@ -1,16 +1,64 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 @import "base/base";
+@import "progress_bar";
 
 #article-list {
   @include outer-container;
   width: 50%;
   margin: 20px auto;
+  padding-bottom: 40px;
 
   h1 {
     text-align: center;
   }
 
+  .add-reject-confirmation {
+    @include row;
+
+    .progress-bar-indication {
+      @include span-columns(9);
+    }
+
+    button {
+      display: block;
+      @include span-columns(3);
+    }
+  }
+
   .article {
+    @include outer-container;
+    border-bottom: 1px solid #CCCCCC;
+    margin: 20px 0;
+
+    .accept-reject-article {
+      @include row;
+
+      button {
+        @include span-columns(4);
+
+        &.accept {
+          background-color: green;
+        }
+        &.reject {
+          @include shift(3);
+          background-color: maroon;
+        }
+      }
+    }
+
+    h2 {
+      @include span-columns(8);
+    }
+
+    .article-details {
+      @include row;
+      @include span-columns(12);
+    }
+
+    .article-content {
+      @include span-columns(12);
+      @include omega;
+    }
   }
 }

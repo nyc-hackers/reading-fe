@@ -3,26 +3,55 @@
   <head>
     <title>Articles To Read</title>
     <link rel="stylesheet" href="/public/css/app.css" media="all" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
     <section ng-controller="showUnread" id="article-list">
+      <div class='add-reject-confirmation'
+        ng-hide="articleIdsToAdd === 0 || articleIdsToRemove === 0">
+
+        <button ng_click="submitReadingList()">
+          Save
+          ({{toUpdateCount()}})
+          <span ng-show="communicatingWithServer"> fetching new articles</span>
+        </button>
+
+        <div class="progress-bar-indication">
+          <span class="meter" style="width: {{progressFloat()}}%">
+            <p>{{progressFloat()}}%</p>
+          </span>
+        </div>
+      </div>
+
       <h1> Unread Articles </h1>
+      <div ng-repeat="article in unreadArticles"
+        class="article"
+        id="article_{{article.id}}">
+        <div class='accept-reject-article'>
+          <button class="accept" name="accept_reject_{{$index}}"
+                 ng-click="addRemoveFromList(article.id, true)">
+            Accept
+          </button>
 
-      <div ng-repeat="article in unreadArticles" class="article comment">
-        <div class="comment-image">
+          <button class="reject" name="accept_reject_{{$index}}"
+                  ng-click="addRemoveFromList(article.id, false)" />
+            Reject
+          </button>
         </div>
 
-        <div class="comment-content">
-          <h2> {{ article.title }} </h2>
-          <a ng-href="{{article.url}}" target="_blank">{{article.url}} ({{article.id}})</a>
+        <h2> {{ article.title }} </h2>
 
-          <div class='add-reject'>
-            <button data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="add"> Add </button>
-            <button data-accept-link="true" data-article-id="{{article.id}}" data-add-or-reject="reject"> Reject</button>
-          </div>
+        <div class="article-details">
+          {{ article.created_at | date }}
+          {{ article.email_subject }}
         </div>
-        <hr />
+
+        <div class="article-content">
+          <a ng-href="{{article.url}}" target="_blank">{{article.url}} </a>
+          ({{article.id}})
+        </div>
       </div>
     </section>
 
