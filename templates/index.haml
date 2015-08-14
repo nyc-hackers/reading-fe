@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %title Articles To Read ARR
+    %link{rel: "stylesheet", href: "/public/css/app.css", media: "all"}
+
+    %meta{name:"viewport", content: "width=device-width, initial-scale=1"}
+    %meta{http_equiv: "content-type", content: "text/html; charset=utf-8"}
+  %body{"ng-app"=>"elFrontend"}
+    %section{"ng-controller" => "showUnread", id: "article-list"}
+      %div{class: 'add-reject-confirmation', ng_hide: "articleIdsToAdd === 0 || articleIdsToRemove === 0"}
+
+        %button{ng_click: "submitReadingList()"}
+          Save
+          ({{toUpdateCount()}})
+          %span{ng_show: "communicatingWithServer"} fetching new articles
+
+        .progress-bar-indication
+          %span.meter{style: "width: {{progressFloat()}}%"}
+            %p {{progressFloat()}}%
+
+      %h1 Unread Articles
+      .article{ng_repeat: "article in unreadArticles", id: "article_{{article.id}}"}
+        .accept-reject-article
+          %button.accept{name: "accept_reject_{{$index}}", ng_click: "addRemoveFromList(article.id, true)"}
+
+            Accept
+
+          %button.reject{name: "accept_reject_{{$index}}", ng_click: "addRemoveFromList(article.id, false)"}
+
+            Reject
+
+        %h2 {{ article.title }}
+
+        .article-details
+          {{ article.created_at | date }}
+          {{ article.email_subject }}
+
+        .article-content
+          %a{ng_href: "{{article.url}}", target: "_blank"}
+            {{article.url}}
+
+          ({{article.id}})
+
+    %script{type:"text/javascript", charset:"utf-8", src:"https://code.jquery.com/jquery-2.1.4.min.js"}
+    %script{src: "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"}
+    %script{src: "/public/js/app.js"}

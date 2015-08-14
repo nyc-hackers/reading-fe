@@ -1,40 +1,5 @@
 var elFrontend = angular.module("elFrontend", []);
-
-elFrontend.directive('acceptLink', function(Article) {
-  return {
-    restrict: "A",
-    scope : {
-      articleId : "@",
-      addOrReject : "@"
-    },
-    link: function(scope, elem, attrs) {
-      elem.bind('click', function(evt) {
-        evt.preventDefault();
-
-        var articleFunction;
-        if(scope.addOrReject == 'add') {
-          articleFunction = Article.addToReadingList;
-        } else {
-          articleFunction = Article.rejectFromReadingList;
-        }
-
-        articleFunction(scope.articleId).then(
-          //success
-          function(resp) {
-          $(elem).parents(".article").first().remove();
-          console.log("article update", resp.data);
-          },
-          // failure
-          function(data) {
-            console.warn("article update", data);
-          }
-        );
-      });
-    }
-  };
-});
-
-elFrontend.factory('Article', function($http) {
+;elFrontend.factory("Article", function($http) {
   var host = "http://home.bam:4001";
   var allUndecided = function() {
     //return $http.get("https://email-listicle.herokuapp.com/api/v1/email_links/all");
@@ -50,20 +15,52 @@ elFrontend.factory('Article', function($http) {
   };
 
   return {
-    allUndecided : allUndecided,
-    addToReadingList : addToReadingList,
-    rejectFromReadingList : rejectFromReadingList
+    allUndecided: allUndecided,
+    addToReadingList: addToReadingList,
+    rejectFromReadingList: rejectFromReadingList
   };
 });
+;elFrontend.directive("acceptLink", function(Article) {
+  return {
+    restrict: "A",
+    scope: {
+      articleId: "@",
+      addOrReject: "@"
+    },
+    link: function(scope, elem, attrs) {
+      elem.bind("click", function(evt) {
+        evt.preventDefault();
 
-elFrontend.controller("showUnread", function($scope, $timeout, Article) {
+        var articleFunction;
+        if (scope.addOrReject === "add") {
+          articleFunction = Article.addToReadingList;
+        } else {
+          articleFunction = Article.rejectFromReadingList;
+        }
+
+        articleFunction(scope.articleId).then(
+          //success
+          function(resp) {
+            $(elem).parents(".article").first().remove();
+            console.log("article update", resp.data);
+          },
+          // failure
+          function(data) {
+            console.warn("article update", data);
+          }
+        );
+      });
+    }
+  };
+});
+;elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   $scope.communicatingWithServer = false;
   $scope.unreadArticles = [];
   $scope.articleIdsToAdd = [];
   $scope.articleIdsToRemove = [];
 
-
   $scope.init = function() {
+    console.log("hello");
     $scope.communicatingWithServer = true;
     Article.allUndecided().then(
       //success
@@ -90,14 +87,13 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   };
 
   $scope.addRemoveFromList = function(articleId, add) {
-    if(add) {
+    if (add) {
       Article.addToReadingList(articleId);
     } else {
       Article.rejectFromReadingList(articleId);
     }
-    $('#article_' + articleId).fadeOut('fast');
+    $("#article_" + articleId).fadeOut("fast");
   };
-
 
   $scope.init();
 });
