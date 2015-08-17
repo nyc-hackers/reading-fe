@@ -3,14 +3,29 @@
 @import "base/base";
 @import "progress_bar";
 
+$mobile:  new-breakpoint(max-width 767px 12);
+
 #article-list {
   @include outer-container;
   width: 50%;
   margin: 20px auto;
   padding-bottom: 40px;
 
+  @include media($mobile) {
+    width: 95%;
+    max-width: 320px;
+  }
+
   h1 {
     text-align: center;
+  }
+
+  .swipe-instructions {
+    display: none;
+
+    @include media($mobile) {
+      display: block;
+    }
   }
 
   .add-reject-confirmation {
@@ -34,6 +49,10 @@
     .accept-reject-article {
       @include row;
 
+      @include media($mobile) {
+        display: none;
+      }
+
       button {
         @include span-columns(4);
 
@@ -48,12 +67,31 @@
     }
 
     h2 {
-      @include span-columns(8);
+      text-align: center;
     }
 
     .article-details {
       @include row;
       @include span-columns(12);
+
+      .created_at {
+        @include span-columns(2);
+        text-align: right;
+
+        @include media($mobile) {
+          @include span-columns(12);
+          text-align: center;
+        }
+      }
+
+      .subject {
+        @include span-columns(10);
+
+        @include media($mobile) {
+          @include span-columns(12);
+          text-align: center;
+        }
+      }
     }
 
     .article-content {

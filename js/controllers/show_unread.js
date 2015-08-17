@@ -5,7 +5,6 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   $scope.articleIdsToRemove = [];
 
   $scope.init = function() {
-    console.log("hello");
     $scope.communicatingWithServer = true;
     Article.allUndecided().then(
       //success

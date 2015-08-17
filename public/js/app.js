@@ -20,35 +20,19 @@ var elFrontend = angular.module("elFrontend", []);
     rejectFromReadingList: rejectFromReadingList
   };
 });
-;elFrontend.directive("acceptLink", function(Article) {
+;elFrontend.directive("swipableArticle", function(Article) {
   return {
     restrict: "A",
-    scope: {
-      articleId: "@",
-      addOrReject: "@"
-    },
     link: function(scope, elem, attrs) {
+      elem.bind("swipeleft", function(evt) {
+        scope.addRemoveFromList(attrs.articleId, false);
+      });
+
+      elem.bind("swiperight", function(evt) {
+        scope.addRemoveFromList(attrs.articleId, true);
+      });
+
       elem.bind("click", function(evt) {
-        evt.preventDefault();
-
-        var articleFunction;
-        if (scope.addOrReject === "add") {
-          articleFunction = Article.addToReadingList;
-        } else {
-          articleFunction = Article.rejectFromReadingList;
-        }
-
-        articleFunction(scope.articleId).then(
-          //success
-          function(resp) {
-            $(elem).parents(".article").first().remove();
-            console.log("article update", resp.data);
-          },
-          // failure
-          function(data) {
-            console.warn("article update", data);
-          }
-        );
       });
     }
   };
@@ -60,7 +44,6 @@ var elFrontend = angular.module("elFrontend", []);
   $scope.articleIdsToRemove = [];
 
   $scope.init = function() {
-    console.log("hello");
     $scope.communicatingWithServer = true;
     Article.allUndecided().then(
       //success
