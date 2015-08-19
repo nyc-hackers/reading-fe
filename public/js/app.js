@@ -1,6 +1,9 @@
 var elFrontend = angular.module("elFrontend", []);
-;elFrontend.factory("Article", function($http) {
-  var host = "http://home.bam:4001";
+;elFrontend.constant("Backend", {
+  host: "https://email-listicle.herokuapp.com/"
+});
+;elFrontend.factory("Article", function($http, Backend) {
+  var host = Backend.host;
   var httpConf = {timeout: 3000};
   var allUndecided = function() {
     //return $http.get("https://email-listicle.herokuapp.com/api/v1/email_links/all");

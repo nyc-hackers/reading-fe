@@ -2,6 +2,9 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
+    configs: {
+      target: grunt.option("target") || "development"
+    },
     jscs: {
       files: ["Gruntfile.js", "js/**/*.js"],
       options: {
@@ -41,10 +44,11 @@ module.exports = function(grunt) {
     concat: {
       options: {
         // define a string to put between each file in the concatenated output
-        separator: ";"
+        separator: ";",
       },
       app: {
         src: ["js/*.js",
+          "js/config/" + "<%= configs.target %>" + ".js",
           "js/factories/**/*.js",
           "js/directives/**/*.js",
           "js/controllers/**/*.js",
@@ -81,6 +85,9 @@ module.exports = function(grunt) {
     }
   });
 
+  var target = grunt.option("target") || "development";
+  console.log("HELLO", target);
+
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-concat");
@@ -88,6 +95,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-haml");
   grunt.loadNpmTasks("grunt-jscs");
 
-  grunt.registerTask("default", ["jshint", "concat", "sass", "haml", "jscs"]);
+  grunt.registerTask("default",
+                     ["jshint", "concat", "sass", "haml", "jscs"]);
 
 };
