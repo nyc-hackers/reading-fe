@@ -9,7 +9,7 @@
   <body ng-app='elFrontend'>
     <section id='article-list' ng-controller='showUnread'>
       <div class='article-count'>
-        {{ unreadArticles.length }}
+        {{ unreadArticles.length  - articlesRejectedOrAccepted }} Articles
       </div>
       <div class='swipe-instructions'>
         Swipe left to reject, swipe right to accept article

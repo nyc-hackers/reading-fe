@@ -9,7 +9,7 @@
   %body{"ng-app"=>"elFrontend"}
     %section{"ng-controller" => "showUnread", id: "article-list"}
       .article-count
-        {{ unreadArticles.length }}
+        {{ unreadArticles.length  - articlesRejectedOrAccepted }} Articles
 
       .swipe-instructions
         Swipe left to reject, swipe right to accept article

@@ -1,8 +1,7 @@
 elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   $scope.communicatingWithServer = false;
   $scope.unreadArticles = [];
-  $scope.articleIdsToAdd = [];
-  $scope.articleIdsToRemove = [];
+  $scope.articlesRejectedOrAccepted = 0;
 
   $scope.init = function() {
     $scope.communicatingWithServer = true;
@@ -31,12 +30,20 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   };
 
   $scope.addRemoveFromList = function(articleId, add) {
+    var prom;
     if (add) {
-      Article.addToReadingList(articleId);
+      prom = Article.addToReadingList(articleId);
     } else {
-      Article.rejectFromReadingList(articleId);
+      prom = Article.rejectFromReadingList(articleId);
     }
     $("#article_" + articleId).fadeOut("fast");
+    ++$scope.articlesRejectedOrAccepted;
+    prom.then(function() {},
+              // error
+              function(data) {
+                $("#article_" + articleId).fadeIn("fast");
+                --$scope.articlesRejectedOrAccepted;
+              });
   };
 
   $scope.init();
