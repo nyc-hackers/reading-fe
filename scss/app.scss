@@ -100,3 +100,23 @@ $mobile:  new-breakpoint(max-width 767px 12);
     }
   }
 }
+
+#unlabeled-cards {
+  h2 {
+    text-align: center;
+  }
+
+  .card {
+    @include row;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCCCCC;
+  }
+
+  .card-color {
+    @include span-columns(4);
+    min-height: 50px;
+    text-align: center;
+    color: #333333;
+  }
+}

@@ -80,6 +80,7 @@ module.exports = function(grunt) {
       index: {
         files: {
           "index.html": "templates/index.haml",
+          "unlabeled.html": "templates/unlabeled.haml",
         }
       }
     }

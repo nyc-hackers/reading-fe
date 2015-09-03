@@ -1,6 +1,6 @@
 var elFrontend = angular.module("elFrontend", []);
 ;elFrontend.constant("Backend", {
-  host: "https://email-listicle.herokuapp.com/"
+  host: "http://home.bam:4001",
 });
 ;elFrontend.factory("Article", function($http, Backend) {
   var host = Backend.host;
@@ -22,10 +22,21 @@ var elFrontend = angular.module("elFrontend", []);
                       httpConf);
   };
 
+  var allUnlabeled = function() {
+    return $http.get(host + "/api/v1/cards/unlabeled");
+  };
+
+  var applyLabelToCard = function(cardId, labelColor) {
+    return $http.put(host + "/api/v1/cards/label", {"card_id": cardId,
+                                                    "label_color": labelColor});
+  };
+
   return {
     allUndecided: allUndecided,
+    allUnlabeled: allUnlabeled,
     addToReadingList: addToReadingList,
-    rejectFromReadingList: rejectFromReadingList
+    rejectFromReadingList: rejectFromReadingList,
+    applyLabelToCard: applyLabelToCard
   };
 });
 ;elFrontend.directive("swipableArticle", function(Article) {
@@ -41,6 +52,28 @@ var elFrontend = angular.module("elFrontend", []);
       });
 
       elem.bind("click", function(evt) {
+      });
+    }
+  };
+});
+;elFrontend.directive("colorSelector", function(Article) {
+  return {
+    restrict: "A",
+    scope: {
+      cardId: "@",
+      labelColor: "@"
+    },
+    link: function(scope, elem, attrs) {
+      elem.bind("click", function(evt) {
+        evt.preventDefault();
+        $(evt.currentTarget).parents(".card").first().hide();
+        Article.applyLabelToCard(scope.cardId, scope.labelColor).then(
+          function() {},
+          // error
+          function() {
+            $(evt.currentTarget).parents(".card").first().show();
+          }
+        );
       });
     }
   };
@@ -91,6 +124,32 @@ var elFrontend = angular.module("elFrontend", []);
                 $("#article_" + articleId).fadeIn("fast");
                 --$scope.articlesRejectedOrAccepted;
               });
+  };
+
+  $scope.init();
+});
+;elFrontend.controller("unlabeled", function($scope, Article) {
+
+  $scope.cardLabels = [
+    {name: "Business, Product", color: "orange", hex: "#FF7200"},
+    {name: "Data Science", color: "green", hex: "#52a74F"},
+    {name: "Programming", color: "yellow", hex: "#FEDF83"}
+  ];
+
+  $scope.cards = [];
+
+  $scope.init = function() {
+    Article.allUnlabeled().then(
+      //success
+      function(resp) {
+        console.log(resp);
+        $scope.cards = resp.data;
+      },
+      //error
+      function(resp) {
+
+      }
+    );
   };
 
   $scope.init();

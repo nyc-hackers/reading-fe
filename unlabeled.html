@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Articles To Read ARR</title>
+    <link href='/public/css/app.css' media='all' rel='stylesheet'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta content='text/html; charset=utf-8' http_equiv='content-type'>
+  </head>
+  <body ng-app='elFrontend'>
+    <section id='unlabeled-cards' ng-controller='unlabeled'>
+      <div class='card' ng_repeat='card in cards'>
+        <h2>
+          {{card.name}}
+          <br>
+          <a ng_href='{{ card.short_url }}' target='_blank'>link</a>
+        </h2>
+        <a class='card-color' data-card-id='{{card.id}}' data-color-selector data-label-color='{{color.color}}' ng_repeat='color in cardLabels' style='background-color: {{color.hex}}'>
+          {{color.name}}
+        </a>
+      </div>
+    </section>
+    <script charset='utf-8' src='https://code.jquery.com/jquery-2.1.4.min.js' type='text/javascript'></script>
+    <script charset='utf-8' src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' type='text/javascript'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js'></script>
+    <script src='/public/js/app.js'></script>
+  </body>
+</html>

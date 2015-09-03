@@ -18,9 +18,20 @@ elFrontend.factory("Article", function($http, Backend) {
                       httpConf);
   };
 
+  var allUnlabeled = function() {
+    return $http.get(host + "/api/v1/cards/unlabeled");
+  };
+
+  var applyLabelToCard = function(cardId, labelColor) {
+    return $http.put(host + "/api/v1/cards/label", {"card_id": cardId,
+                                                    "label_color": labelColor});
+  };
+
   return {
     allUndecided: allUndecided,
+    allUnlabeled: allUnlabeled,
     addToReadingList: addToReadingList,
-    rejectFromReadingList: rejectFromReadingList
+    rejectFromReadingList: rejectFromReadingList,
+    applyLabelToCard: applyLabelToCard
   };
 });

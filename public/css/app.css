@@ -364,3 +364,27 @@ picture {
       margin-right: 0; }
       #article-list .article .article-content:last-child {
         margin-right: 0; }
+
+#unlabeled-cards h2 {
+  text-align: center; }
+
+#unlabeled-cards .card {
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #CCCCCC; }
+  #unlabeled-cards .card::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+#unlabeled-cards .card-color {
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 31.7615656014%;
+  min-height: 50px;
+  text-align: center;
+  color: #333333; }
+  #unlabeled-cards .card-color:last-child {
+    margin-right: 0; }
