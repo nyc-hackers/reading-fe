@@ -80,8 +80,14 @@ module.exports = function(grunt) {
       index: {
         files: {
           "index.html": "templates/index.haml",
-          "unlabeled.html": "templates/unlabeled.haml",
         }
+      },
+      templates: {
+        files: grunt.file.expandMapping(["templates/_*.haml"], "views/", {
+          rename: function(base, path) {
+            return base + path.replace("templates\/", "").replace(/\.haml$/, ".html");
+          }
+        })
       }
     }
   });

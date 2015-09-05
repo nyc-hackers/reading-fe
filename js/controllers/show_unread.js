@@ -8,13 +8,11 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
     Article.allUndecided().then(
       //success
       function(resp) {
-        console.log("all articles", resp.data);
         $scope.unreadArticles = resp.data;
         $scope.communicatingWithServer = false;
       },
       // failure
       function(data) {
-        console.warn("all articles", data);
         $scope.communicatingWithServer = false;
       }
     );

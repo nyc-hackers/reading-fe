@@ -235,6 +235,21 @@ picture {
     padding: 0.1em 0.5em;
     text-shadow: 0 0 1px black; }
 
+nav {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin: 20px auto;
+  text-align: center; }
+  nav::after {
+    clear: both;
+    content: "";
+    display: table; }
+  nav a {
+    padding: 10px 20px;
+    font-size: small; }
+
 #article-list {
   max-width: 68em;
   margin-left: auto;

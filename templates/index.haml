@@ -7,39 +7,12 @@
     %meta{name:"viewport", content: "width=device-width, initial-scale=1"}
     %meta{http_equiv: "content-type", content: "text/html; charset=utf-8"}
   %body{"ng-app"=>"elFrontend"}
-    %section{"ng-controller" => "showUnread", id: "article-list"}
-      .article-count
-        {{ unreadArticles.length  - articlesRejectedOrAccepted }} Articles
+    %nav
+      %a{"ui-sref" => "undecided"} Accept/Reject
+      %a{"ui-sref" => "unlabeled"} Unlabeled Cards
 
-      .swipe-instructions
-        Swipe left to reject, swipe right to accept article
-
-
-      %h1 Unread Articles
-      .article{ ng_repeat: "article in unreadArticles",
-        id: "article_{{article.id}}",
-        data: {swipable_article: true, article_id: "{{article.id}}"}}
-
-        .accept-reject-article
-          %button.accept{ name: "accept_reject_{{$index}}",
-                          ng_click: "addRemoveFromList(article.id, true)"}
-            Accept
-
-          %button.reject{ name: "accept_reject_{{$index}}",
-                          ng_click: "addRemoveFromList(article.id, false)"}
-            Reject
-
-
-        %h2 {{ article.title }}
-
-        .article-details
-          %p.subject {{ article.email_subject }}
-          %p.created_at {{ article.created_at | date }}
-
-        .article-content
-          %a{ng_href: "{{article.url}}", target: "_blank"} link
-
-          ({{article.id}})
+    %section#main
+      %ui-view
 
     %script{type:"text/javascript",
       charset:"utf-8",
@@ -50,4 +23,5 @@
       src:"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"}
 
     %script{src: "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"}
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"}
     %script{src: "/public/js/app.js"}

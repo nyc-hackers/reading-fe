@@ -7,37 +7,17 @@
     <meta content='text/html; charset=utf-8' http_equiv='content-type'>
   </head>
   <body ng-app='elFrontend'>
-    <section id='article-list' ng-controller='showUnread'>
-      <div class='article-count'>
-        {{ unreadArticles.length  - articlesRejectedOrAccepted }} Articles
-      </div>
-      <div class='swipe-instructions'>
-        Swipe left to reject, swipe right to accept article
-      </div>
-      <h1>Unread Articles</h1>
-      <div class='article' data-article-id='{{article.id}}' data-swipable-article id='article_{{article.id}}' ng_repeat='article in unreadArticles'>
-        <div class='accept-reject-article'>
-          <button class='accept' name='accept_reject_{{$index}}' ng_click='addRemoveFromList(article.id, true)'>
-            Accept
-          </button>
-          <button class='reject' name='accept_reject_{{$index}}' ng_click='addRemoveFromList(article.id, false)'>
-            Reject
-          </button>
-        </div>
-        <h2>{{ article.title }}</h2>
-        <div class='article-details'>
-          <p class='subject'>{{ article.email_subject }}</p>
-          <p class='created_at'>{{ article.created_at | date }}</p>
-        </div>
-        <div class='article-content'>
-          <a ng_href='{{article.url}}' target='_blank'>link</a>
-          ({{article.id}})
-        </div>
-      </div>
+    <nav>
+      <a ui-sref='undecided'>Accept/Reject</a>
+      <a ui-sref='unlabeled'>Unlabeled Cards</a>
+    </nav>
+    <section id='main'>
+      <ui-view></ui-view>
     </section>
     <script charset='utf-8' src='https://code.jquery.com/jquery-2.1.4.min.js' type='text/javascript'></script>
     <script charset='utf-8' src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js' type='text/javascript'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js'></script>
     <script src='/public/js/app.js'></script>
   </body>
 </html>

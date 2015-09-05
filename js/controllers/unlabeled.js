@@ -12,7 +12,6 @@ elFrontend.controller("unlabeled", function($scope, Article) {
     Article.allUnlabeled().then(
       //success
       function(resp) {
-        console.log(resp);
         $scope.cards = resp.data;
       },
       //error

@@ -5,6 +5,18 @@
 
 $mobile:  new-breakpoint(max-width 767px 12);
 
+nav {
+  @include outer-container;
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+
+  a {
+    padding: 10px 20px;
+    font-size: small;
+  }
+}
+
 #article-list {
   @include outer-container;
   width: 50%;

@@ -1,4 +1,21 @@
-var elFrontend = angular.module("elFrontend", []);
+var elFrontend = angular.module("elFrontend", ["ui.router"]);
+
+elFrontend.config(function($stateProvider, $urlRouterProvider,
+                           $locationProvider) {
+  // For any unmatched url, redirect to /state1
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise("/");
+  // Now set up the states
+  $stateProvider
+  .state("undecided", {
+    url: "/",
+    templateUrl: "/views/_undecided_articles.html"
+  })
+  .state("unlabeled", {
+    url: "/unlabeled",
+    templateUrl: "/views/_unlabeled.html"
+  });
+});
 ;elFrontend.constant("Backend", {
   host: "http://home.bam:4001",
 });
@@ -88,7 +105,6 @@ var elFrontend = angular.module("elFrontend", []);
     Article.allUndecided().then(
       //success
       function(resp) {
-        console.log("all articles", resp.data);
         $scope.unreadArticles = resp.data;
         $scope.communicatingWithServer = false;
       },
@@ -142,7 +158,6 @@ var elFrontend = angular.module("elFrontend", []);
     Article.allUnlabeled().then(
       //success
       function(resp) {
-        console.log(resp);
         $scope.cards = resp.data;
       },
       //error
