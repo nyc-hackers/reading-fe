@@ -22,6 +22,10 @@ elFrontend.factory("Article", function($http, Backend) {
     return $http.get(host + "/api/v1/cards/unlabeled");
   };
 
+  var allUnread = function() {
+    return $http.get(host + "/api/v1/cards/unread");
+  };
+
   var applyLabelToCard = function(cardId, labelColor) {
     return $http.put(host + "/api/v1/cards/label", {"card_id": cardId,
                                                     "label_color": labelColor});
@@ -30,6 +34,7 @@ elFrontend.factory("Article", function($http, Backend) {
   return {
     allUndecided: allUndecided,
     allUnlabeled: allUnlabeled,
+    allUnread: allUnread,
     addToReadingList: addToReadingList,
     rejectFromReadingList: rejectFromReadingList,
     applyLabelToCard: applyLabelToCard

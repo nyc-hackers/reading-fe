@@ -1,19 +1,15 @@
 elFrontend.controller("showUnread", function($scope, $timeout, Article) {
-  $scope.communicatingWithServer = false;
   $scope.unreadArticles = [];
   $scope.articlesRejectedOrAccepted = 0;
 
   $scope.init = function() {
-    $scope.communicatingWithServer = true;
     Article.allUndecided().then(
       //success
       function(resp) {
         $scope.unreadArticles = resp.data;
-        $scope.communicatingWithServer = false;
       },
       // failure
       function(data) {
-        $scope.communicatingWithServer = false;
       }
     );
   };
@@ -43,6 +39,4 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
                 --$scope.articlesRejectedOrAccepted;
               });
   };
-
-  $scope.init();
 });

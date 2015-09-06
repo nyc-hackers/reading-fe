@@ -17,6 +17,12 @@ nav {
   }
 }
 
+section#main {
+  @include outer-container;
+  width: 50%;
+  margin: 20px auto;
+}
+
 #article-list {
   @include outer-container;
   width: 50%;
@@ -130,5 +136,36 @@ nav {
     min-height: 50px;
     text-align: center;
     color: #333333;
+  }
+}
+
+#unread-cards {
+  @include outer-container;
+  .card {
+    @include span-columns(4);
+    @include omega(3n);
+    border-top: 1px solid #CCCCCC;
+    padding-top: 10px;
+    height: 180px;
+
+    .label {
+      @include span-columns(3 of 4);
+    }
+
+    .green {
+      background-color: #52a74F;
+    }
+
+    .orange {
+      background-color: #FF7200;
+    }
+
+    .yellow {
+      background-color: #FEDF83;
+    }
+
+    .links {
+      @include span-columns(4 of 4);
+    }
   }
 }

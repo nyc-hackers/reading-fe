@@ -1,0 +1,20 @@
+<section id='unread-cards' ng-controller='cards' ng-init='unreadCards()'>
+  <div class='card' ng_repeat='card in cards'>
+    <h2>
+      {{card.name}}
+    </h2>
+    <ul class='labels'>
+      <li class='label' ng_class='label.color' ng_repeat='label in card.labels'>
+        {{ label.name }}
+      </li>
+    </ul>
+    <ul class='links'>
+      <li>
+        <a ng_href='{{ card.attachments[0].url }}' target='_blank'>link to article</a>
+      </li>
+      <li>
+        <a ng_href='{{ card.shortUrl }}' target='_blank'>{{card.shortUrl}}</a>
+      </li>
+    </ul>
+  </div>
+</section>

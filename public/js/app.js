@@ -4,16 +4,20 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
                            $locationProvider) {
   // For any unmatched url, redirect to /state1
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/unread");
   // Now set up the states
   $stateProvider
   .state("undecided", {
-    url: "/",
-    templateUrl: "/views/_undecided_articles.html"
+    url: "/undecided",
+    templateUrl: "/views/_undecided_articles.html",
   })
   .state("unlabeled", {
     url: "/unlabeled",
     templateUrl: "/views/_unlabeled.html"
+  })
+  .state("unread", {
+    url: "/unread",
+    templateUrl: "/views/_unread.html"
   });
 });
 ;elFrontend.constant("Backend", {
@@ -43,6 +47,10 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
     return $http.get(host + "/api/v1/cards/unlabeled");
   };
 
+  var allUnread = function() {
+    return $http.get(host + "/api/v1/cards/unread");
+  };
+
   var applyLabelToCard = function(cardId, labelColor) {
     return $http.put(host + "/api/v1/cards/label", {"card_id": cardId,
                                                     "label_color": labelColor});
@@ -51,6 +59,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   return {
     allUndecided: allUndecided,
     allUnlabeled: allUnlabeled,
+    allUnread: allUnread,
     addToReadingList: addToReadingList,
     rejectFromReadingList: rejectFromReadingList,
     applyLabelToCard: applyLabelToCard
@@ -96,22 +105,17 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   };
 });
 ;elFrontend.controller("showUnread", function($scope, $timeout, Article) {
-  $scope.communicatingWithServer = false;
   $scope.unreadArticles = [];
   $scope.articlesRejectedOrAccepted = 0;
 
   $scope.init = function() {
-    $scope.communicatingWithServer = true;
     Article.allUndecided().then(
       //success
       function(resp) {
         $scope.unreadArticles = resp.data;
-        $scope.communicatingWithServer = false;
       },
       // failure
       function(data) {
-        console.warn("all articles", data);
-        $scope.communicatingWithServer = false;
       }
     );
   };
@@ -141,10 +145,8 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
                 --$scope.articlesRejectedOrAccepted;
               });
   };
-
-  $scope.init();
 });
-;elFrontend.controller("unlabeled", function($scope, Article) {
+;elFrontend.controller("cards", function($scope, Article) {
 
   $scope.cardLabels = [
     {name: "Business, Product", color: "orange", hex: "#FF7200"},
@@ -154,7 +156,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
 
   $scope.cards = [];
 
-  $scope.init = function() {
+  $scope.unlabeledCards = function() {
     Article.allUnlabeled().then(
       //success
       function(resp) {
@@ -167,5 +169,15 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
     );
   };
 
-  $scope.init();
+  $scope.unreadCards = function() {
+    Article.allUnread().then(
+      //success
+      function(resp) {
+        $scope.cards = resp.data;
+      },
+      // failure
+      function(data) {
+      }
+    );
+  };
 });

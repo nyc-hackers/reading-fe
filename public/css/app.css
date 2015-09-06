@@ -250,6 +250,17 @@ nav {
     padding: 10px 20px;
     font-size: small; }
 
+section#main {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin: 20px auto; }
+  section#main::after {
+    clear: both;
+    content: "";
+    display: table; }
+
 #article-list {
   max-width: 68em;
   margin-left: auto;
@@ -403,3 +414,46 @@ nav {
   color: #333333; }
   #unlabeled-cards .card-color:last-child {
     margin-right: 0; }
+
+#unread-cards {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  #unread-cards::after {
+    clear: both;
+    content: "";
+    display: table; }
+  #unread-cards .card {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 31.7615656014%;
+    border-top: 1px solid #CCCCCC;
+    padding-top: 10px;
+    height: 180px; }
+    #unread-cards .card:last-child {
+      margin-right: 0; }
+    #unread-cards .card:nth-child(3n) {
+      margin-right: 0; }
+    #unread-cards .card:nth-child(3n+1) {
+      clear: left; }
+    #unread-cards .card .label {
+      float: left;
+      display: block;
+      margin-right: 7.4229703521%;
+      width: 73.144257412%; }
+      #unread-cards .card .label:last-child {
+        margin-right: 0; }
+    #unread-cards .card .green {
+      background-color: #52a74F; }
+    #unread-cards .card .orange {
+      background-color: #FF7200; }
+    #unread-cards .card .yellow {
+      background-color: #FEDF83; }
+    #unread-cards .card .links {
+      float: left;
+      display: block;
+      margin-right: 7.4229703521%;
+      width: 100%; }
+      #unread-cards .card .links:last-child {
+        margin-right: 0; }

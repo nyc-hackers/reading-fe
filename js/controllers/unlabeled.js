@@ -1,4 +1,4 @@
-elFrontend.controller("unlabeled", function($scope, Article) {
+elFrontend.controller("cards", function($scope, Article) {
 
   $scope.cardLabels = [
     {name: "Business, Product", color: "orange", hex: "#FF7200"},
@@ -8,7 +8,7 @@ elFrontend.controller("unlabeled", function($scope, Article) {
 
   $scope.cards = [];
 
-  $scope.init = function() {
+  $scope.unlabeledCards = function() {
     Article.allUnlabeled().then(
       //success
       function(resp) {
@@ -21,5 +21,15 @@ elFrontend.controller("unlabeled", function($scope, Article) {
     );
   };
 
-  $scope.init();
+  $scope.unreadCards = function() {
+    Article.allUnread().then(
+      //success
+      function(resp) {
+        $scope.cards = resp.data;
+      },
+      // failure
+      function(data) {
+      }
+    );
+  };
 });

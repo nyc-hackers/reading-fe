@@ -1,4 +1,4 @@
-<section id='unlabeled-cards' ng-controller='unlabeled'>
+<section id='unlabeled-cards' ng-controller='cards' ng-init='unlabeledCards()'>
   <div class='card' ng_repeat='card in cards'>
     <h2>
       {{card.name}}
