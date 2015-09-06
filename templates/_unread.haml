@@ -1,16 +1,20 @@
 %section#unread-cards{'ng-controller' => "cards",
   "ng-init" => "unreadCards()"}
 
-  .card{ng_repeat: "card in cards"}
-    %h2
-      {{card.name}}
+  %header
+    {{cards.length}} unread articles
 
-    %ul.labels
-      %li.label{ng_repeat: "label in card.labels", ng_class: "label.color"}
-        {{ label.name }}
+  .cards
+    .card{ng_repeat: "card in cards", ng_class: "card.labels[0].color"}
+      %h2
+        {{card.name}}
 
-    %ul.links
-      %li
-        %a{ng_href: "{{ card.attachments[0].url }}", target: "_blank"} link to article
-      %li
-        %a{ng_href: "{{ card.shortUrl }}", target: "_blank"} {{card.shortUrl}}
+      %ul.labels
+        %li.label{ng_repeat: "label in card.labels", ng_class: "label.color"}
+          {{ label.name }}
+
+      %ul.links
+        %li
+          %a{ng_href: "{{ card.attachments[0].url }}", target: "_blank"} link to article
+        %li
+          %a{ng_href: "{{ card.shortUrl }}", target: "_blank"} {{card.shortUrl}}

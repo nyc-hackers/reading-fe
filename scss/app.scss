@@ -141,31 +141,48 @@ section#main {
 
 #unread-cards {
   @include outer-container;
+
+  header {
+    @include span-columns(12);
+  }
+
   .card {
     @include span-columns(4);
     @include omega(3n);
-    border-top: 1px solid #CCCCCC;
     padding-top: 10px;
     height: 180px;
 
+    @include media($mobile) {
+      @include span-columns(12);
+    }
+
+    &.green {
+      border-top: 3px solid #52A74F;
+    }
+
+    &.orange {
+      border-top: 3px solid #FF7200;
+    }
+
+    &.yellow {
+      border-top: 3px solid #FEDF83;
+    }
+
     .label {
       @include span-columns(3 of 4);
+
+      @include media($mobile) {
+        @include span-columns(12);
+      }
     }
 
-    .green {
-      background-color: #52a74F;
-    }
-
-    .orange {
-      background-color: #FF7200;
-    }
-
-    .yellow {
-      background-color: #FEDF83;
-    }
 
     .links {
       @include span-columns(4 of 4);
+
+      @include media($mobile) {
+        @include span-columns(12);
+      }
     }
   }
 }

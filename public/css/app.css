@@ -423,12 +423,18 @@ section#main {
     clear: both;
     content: "";
     display: table; }
+  #unread-cards header {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 100%; }
+    #unread-cards header:last-child {
+      margin-right: 0; }
   #unread-cards .card {
     float: left;
     display: block;
     margin-right: 2.3576515979%;
     width: 31.7615656014%;
-    border-top: 1px solid #CCCCCC;
     padding-top: 10px;
     height: 180px; }
     #unread-cards .card:last-child {
@@ -437,6 +443,20 @@ section#main {
       margin-right: 0; }
     #unread-cards .card:nth-child(3n+1) {
       clear: left; }
+    @media screen and (max-width: 767px) {
+      #unread-cards .card {
+        float: left;
+        display: block;
+        margin-right: 2.3576515979%;
+        width: 100%; }
+        #unread-cards .card:last-child {
+          margin-right: 0; } }
+    #unread-cards .card.green {
+      border-top: 3px solid #52A74F; }
+    #unread-cards .card.orange {
+      border-top: 3px solid #FF7200; }
+    #unread-cards .card.yellow {
+      border-top: 3px solid #FEDF83; }
     #unread-cards .card .label {
       float: left;
       display: block;
@@ -444,12 +464,14 @@ section#main {
       width: 73.144257412%; }
       #unread-cards .card .label:last-child {
         margin-right: 0; }
-    #unread-cards .card .green {
-      background-color: #52a74F; }
-    #unread-cards .card .orange {
-      background-color: #FF7200; }
-    #unread-cards .card .yellow {
-      background-color: #FEDF83; }
+      @media screen and (max-width: 767px) {
+        #unread-cards .card .label {
+          float: left;
+          display: block;
+          margin-right: 2.3576515979%;
+          width: 100%; }
+          #unread-cards .card .label:last-child {
+            margin-right: 0; } }
     #unread-cards .card .links {
       float: left;
       display: block;
@@ -457,3 +479,11 @@ section#main {
       width: 100%; }
       #unread-cards .card .links:last-child {
         margin-right: 0; }
+      @media screen and (max-width: 767px) {
+        #unread-cards .card .links {
+          float: left;
+          display: block;
+          margin-right: 2.3576515979%;
+          width: 100%; }
+          #unread-cards .card .links:last-child {
+            margin-right: 0; } }
