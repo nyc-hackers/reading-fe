@@ -3,7 +3,7 @@
     {{cards.length}} unread articles
   </header>
   <div class='cards'>
-    <div class='card' ng_class='card.labels[0].color' ng_repeat='card in cards'>
+    <div class='card' id='{{card.id}}' ng_class='card.labels[0].color' ng_repeat='card in cards'>
       <h2>
         {{card.name}}
       </h2>
@@ -18,6 +18,15 @@
         </li>
         <li>
           <a ng_href='{{ card.shortUrl }}' target='_blank'>{{card.shortUrl}}</a>
+        </li>
+        <li>
+          <a data-archive-card data-id='{{card.id}}' ng_href='nothing'>archive</a>
+        </li>
+        <li>
+          <a data-id='{{card.id}}' data-move-to-doing>Move To Doing</a>
+        </li>
+        <li>
+          <a data-id='{{card.id}}' data-move-to-doing>Move To Done</a>
         </li>
       </ul>
     </div>

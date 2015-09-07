@@ -31,12 +31,30 @@ elFrontend.factory("Article", function($http, Backend) {
                                                     "label_color": labelColor});
   };
 
+  var archiveCard = function(cardId) {
+    return $http.delete(host + "/api/v1/cards/archive_card",
+                        {params: {"card_id": cardId}});
+  };
+
+  var moveToDoing = function(cardId) {
+    return $http.put(host + "/api/v1/cards/move_card_to_doing",
+                     {"card_id": cardId});
+  };
+
+  var moveToDone = function(cardId) {
+    return $http.put(host + "/api/v1/cards/move_card_to_done",
+                     {"card_id": cardId});
+  };
+
   return {
     allUndecided: allUndecided,
     allUnlabeled: allUnlabeled,
     allUnread: allUnread,
     addToReadingList: addToReadingList,
     rejectFromReadingList: rejectFromReadingList,
-    applyLabelToCard: applyLabelToCard
+    applyLabelToCard: applyLabelToCard,
+    archiveCard: archiveCard,
+    moveToDoing: moveToDoing,
+    moveToDone: moveToDone
   };
 });

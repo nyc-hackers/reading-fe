@@ -3,7 +3,7 @@ var elFrontend = angular.module("elFrontend", ["ui.router"]);
 elFrontend.config(function($stateProvider, $urlRouterProvider,
                            $locationProvider) {
   // For any unmatched url, redirect to /state1
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise("/unread");
   // Now set up the states
   $stateProvider

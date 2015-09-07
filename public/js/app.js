@@ -3,7 +3,7 @@ var elFrontend = angular.module("elFrontend", ["ui.router"]);
 elFrontend.config(function($stateProvider, $urlRouterProvider,
                            $locationProvider) {
   // For any unmatched url, redirect to /state1
-  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise("/unread");
   // Now set up the states
   $stateProvider
@@ -56,13 +56,31 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
                                                     "label_color": labelColor});
   };
 
+  var archiveCard = function(cardId) {
+    return $http.delete(host + "/api/v1/cards/archive_card",
+                        {params: {"card_id": cardId}});
+  };
+
+  var moveToDoing = function(cardId) {
+    return $http.put(host + "/api/v1/cards/move_card_to_doing",
+                     {"card_id": cardId});
+  };
+
+  var moveToDone = function(cardId) {
+    return $http.put(host + "/api/v1/cards/move_card_to_done",
+                     {"card_id": cardId});
+  };
+
   return {
     allUndecided: allUndecided,
     allUnlabeled: allUnlabeled,
     allUnread: allUnread,
     addToReadingList: addToReadingList,
     rejectFromReadingList: rejectFromReadingList,
-    applyLabelToCard: applyLabelToCard
+    applyLabelToCard: applyLabelToCard,
+    archiveCard: archiveCard,
+    moveToDoing: moveToDoing,
+    moveToDone: moveToDone
   };
 });
 ;elFrontend.directive("swipableArticle", function(Article) {
@@ -78,6 +96,28 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
       });
 
       elem.bind("click", function(evt) {
+      });
+    }
+  };
+});
+;elFrontend.directive("archiveCard", function(Article) {
+  var cardId = "";
+  var archiveSuccess = function(data) {
+    console.log("success!");
+    $("#" + cardId).css("background-color", "red");
+  };
+
+  var archiveFail = function(resp) {
+
+  };
+
+  return {
+    restrict: "A",
+    link: function(scope, elem, attrs) {
+      elem.bind("click", function(evt) {
+        evt.preventDefault();
+        cardId = attrs.id;
+        Article.archiveCard(attrs.id).then(archiveSuccess, archiveFail);
       });
     }
   };
@@ -100,6 +140,52 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
             $(evt.currentTarget).parents(".card").first().show();
           }
         );
+      });
+    }
+  };
+});
+;elFrontend.directive("moveToDoing", function(Article) {
+  var cardId = "";
+  var success = function(data) {
+    console.log("success!");
+    $("#" + cardId).addClass("doing");
+  };
+
+  var fail = function(resp) {
+
+  };
+
+  return {
+    restrict: "A",
+    link: function(scope, elem, attrs) {
+      elem.bind("click", function(evt) {
+        evt.preventDefault();
+        cardId = attrs.id;
+        success();
+        Article.moveToDoing(attrs.id).then(success, fail);
+      });
+    }
+  };
+});
+;elFrontend.directive("moveToDone", function(Article) {
+  var cardId = "";
+  var success = function(data) {
+    console.log("success!");
+    $("#" + cardId).addClass("doing");
+  };
+
+  var fail = function(resp) {
+
+  };
+
+  return {
+    restrict: "A",
+    link: function(scope, elem, attrs) {
+      elem.bind("click", function(evt) {
+        evt.preventDefault();
+        cardId = attrs.id;
+        success();
+        Article.moveToDone(attrs.id).then(success, fail);
       });
     }
   };

@@ -3,7 +3,7 @@
 @import "base/base";
 @import "progress_bar";
 
-$mobile:  new-breakpoint(max-width 767px 12);
+$mobile:  new-breakpoint(max-width 769px 12);
 
 nav {
   @include outer-container;
@@ -154,6 +154,12 @@ section#main {
 
     @include media($mobile) {
       @include span-columns(12);
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    &.doing {
+      opacity: 0.7;
     }
 
     &.green {
