@@ -1,0 +1,16 @@
+%h2
+  {{card.name}}
+
+%ul.labels
+  %li.label{ng_repeat: "label in card.labels", ng_class: "label.color"}
+    {{ label.name }}
+
+%ul.links
+  %li
+    %a.article{ng_href: "{{ card.attachments[0].url }}", target: "_blank"} Read Article
+  %li
+    %a.trello{ng_href: "{{ card.shortUrl }}", target: "_blank"} View On Trello
+  %li
+    %a.archive{ng_href: "nothing", data: {archive_card: true, id: "{{card.id}}" }} Archive
+  %li
+    %a.doing{data: {move_to_doing: true, id: "{{card.id}}"}} Move To Doing

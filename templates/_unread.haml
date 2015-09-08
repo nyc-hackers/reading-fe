@@ -5,24 +5,7 @@
     {{cards.length}} unread articles
 
   .cards
-    .card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",
+    %card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",
       id: "{{card.id}}"}
 
-      %h2
-        {{card.name}}
 
-      %ul.labels
-        %li.label{ng_repeat: "label in card.labels", ng_class: "label.color"}
-          {{ label.name }}
-
-      %ul.links
-        %li
-          %a{ng_href: "{{ card.attachments[0].url }}", target: "_blank"} link to article
-        %li
-          %a{ng_href: "{{ card.shortUrl }}", target: "_blank"} {{card.shortUrl}}
-        %li
-          %a{ng_href: "nothing", data: {archive_card: true, id: "{{card.id}}" }} archive
-        %li
-          %a{data: {move_to_doing: true, id: "{{card.id}}"}} Move To Doing
-        %li
-          %a{data: {move_to_doing: true, id: "{{card.id}}"}} Move To Done

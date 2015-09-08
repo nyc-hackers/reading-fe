@@ -144,50 +144,55 @@ section#main {
 
   header {
     @include span-columns(12);
-  }
-
-  .card {
-    @include span-columns(4);
-    @include omega(3n);
-    padding-top: 10px;
-    height: 180px;
 
     @include media($mobile) {
-      @include span-columns(12);
-      height: auto;
-      margin-bottom: 20px;
+      text-align: center;
     }
+  }
 
-    &.doing {
-      opacity: 0.7;
-    }
+  .cards {
+    @include outer-container;
+    @include span-columns(12);
 
-    &.green {
-      border-top: 3px solid #52A74F;
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stetch;
 
-    &.orange {
-      border-top: 3px solid #FF7200;
-    }
 
-    &.yellow {
-      border-top: 3px solid #FEDF83;
-    }
+    card {
+      margin-right: 10px;
+      margin-bottom: 15px;
+      padding: 14px;
+      width: 240px;
+      box-shadow: 0px 5px 15px #CCCCCC;
 
-    .label {
-      @include span-columns(3 of 4);
-
-      @include media($mobile) {
-        @include span-columns(12);
+      &.doing {
+        opacity: 0.7;
       }
-    }
 
+      &.green {
+        border-top: 3px solid #52A74F;
+      }
 
-    .links {
-      @include span-columns(4 of 4);
+      &.orange {
+        border-top: 3px solid #FF7200;
+      }
 
-      @include media($mobile) {
-        @include span-columns(12);
+      &.yellow {
+        border-top: 3px solid #FEDF83;
+      }
+
+      h2 {
+        @include media($mobile) {
+          text-align: center;
+        }
+      }
+
+      a {
+        @include button;
+        margin: 5px 0;
       }
     }
   }

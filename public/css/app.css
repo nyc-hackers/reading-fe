@@ -430,64 +430,71 @@ section#main {
     width: 100%; }
     #unread-cards header:last-child {
       margin-right: 0; }
-  #unread-cards .card {
+    @media screen and (max-width: 769px) {
+      #unread-cards header {
+        text-align: center; } }
+  #unread-cards .cards {
+    max-width: 68em;
+    margin-left: auto;
+    margin-right: auto;
     float: left;
     display: block;
     margin-right: 2.3576515979%;
-    width: 31.7615656014%;
-    padding-top: 10px;
-    height: 180px; }
-    #unread-cards .card:last-child {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stetch; }
+    #unread-cards .cards::after {
+      clear: both;
+      content: "";
+      display: table; }
+    #unread-cards .cards:last-child {
       margin-right: 0; }
-    #unread-cards .card:nth-child(3n) {
-      margin-right: 0; }
-    #unread-cards .card:nth-child(3n+1) {
-      clear: left; }
-    @media screen and (max-width: 769px) {
-      #unread-cards .card {
-        float: left;
-        display: block;
-        margin-right: 2.3576515979%;
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px; }
-        #unread-cards .card:last-child {
-          margin-right: 0; } }
-    #unread-cards .card.doing {
-      opacity: 0.7; }
-    #unread-cards .card.green {
-      border-top: 3px solid #52A74F; }
-    #unread-cards .card.orange {
-      border-top: 3px solid #FF7200; }
-    #unread-cards .card.yellow {
-      border-top: 3px solid #FEDF83; }
-    #unread-cards .card .label {
-      float: left;
-      display: block;
-      margin-right: 7.4229703521%;
-      width: 73.144257412%; }
-      #unread-cards .card .label:last-child {
-        margin-right: 0; }
+    #unread-cards .cards card {
+      margin-right: 10px;
+      margin-bottom: 15px;
+      padding: 14px;
+      width: 240px;
+      box-shadow: 0px 5px 15px #CCCCCC; }
+      #unread-cards .cards card.doing {
+        opacity: 0.7; }
+      #unread-cards .cards card.green {
+        border-top: 3px solid #52A74F; }
+      #unread-cards .cards card.orange {
+        border-top: 3px solid #FF7200; }
+      #unread-cards .cards card.yellow {
+        border-top: 3px solid #FEDF83; }
       @media screen and (max-width: 769px) {
-        #unread-cards .card .label {
-          float: left;
-          display: block;
-          margin-right: 2.3576515979%;
-          width: 100%; }
-          #unread-cards .card .label:last-child {
-            margin-right: 0; } }
-    #unread-cards .card .links {
-      float: left;
-      display: block;
-      margin-right: 7.4229703521%;
-      width: 100%; }
-      #unread-cards .card .links:last-child {
-        margin-right: 0; }
-      @media screen and (max-width: 769px) {
-        #unread-cards .card .links {
-          float: left;
-          display: block;
-          margin-right: 2.3576515979%;
-          width: 100%; }
-          #unread-cards .card .links:last-child {
-            margin-right: 0; } }
+        #unread-cards .cards card h2 {
+          text-align: center; } }
+      #unread-cards .cards card a {
+        border: 1px solid #076fe4;
+        border-radius: 3px;
+        box-shadow: inset 0 1px 0 0 #8ebcf1;
+        color: white;
+        display: inline-block;
+        font-size: inherit;
+        font-weight: bold;
+        background-color: #4294f0;
+        background-image: -webkit-linear-gradient(#4294f0, #0776f3);
+        background-image: linear-gradient(#4294f0, #0776f3, , , , , , , , );
+        padding: 7px 18px;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #0065d6;
+        background-clip: padding-box;
+        margin: 5px 0; }
+        #unread-cards .cards card a:hover:not(:disabled) {
+          background-color: #2f87ea;
+          background-image: -webkit-linear-gradient(#2f87ea, #086fe3);
+          background-image: linear-gradient(#2f87ea, #086fe3, , , , , , , , );
+          box-shadow: inset 0 1px 0 0 #60a2ec;
+          cursor: pointer; }
+        #unread-cards .cards card a:active:not(:disabled),
+        #unread-cards .cards card a:focus:not(:disabled) {
+          border: 1px solid #076fe4;
+          box-shadow: inset 0 0 8px 4px #0868d3, inset 0 0 8px 4px #0868d3; }
+        #unread-cards .cards card a:disabled {
+          cursor: not-allowed;
+          opacity: 0.5; }
