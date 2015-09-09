@@ -1,12 +1,6 @@
-<section id='unlabeled-cards' ng-controller='cards' ng-init='unlabeledCards()'>
-  <div class='card' ng_repeat='card in cards'>
-    <h2>
-      {{card.name}}
-      <br>
-      <a ng_href='{{ card.short_url }}' target='_blank'>link</a>
-    </h2>
-    <a class='card-color' data-card-id='{{card.id}}' data-color-selector data-label-color='{{color.color}}' ng_repeat='color in cardLabels' style='background-color: {{color.hex}}'>
-      {{color.name}}
-    </a>
+<section id='cards' ng-controller='cards' ng-init='unlabeledCards()'>
+  <h1>Label Cards</h1>
+  <div class='cards'>
+    <card data-card='card' id='{{card.id}}' ng_class='card.labels[0].color' ng_repeat='card in cards'></card>
   </div>
 </section>

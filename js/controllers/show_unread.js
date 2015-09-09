@@ -2,7 +2,7 @@ elFrontend.controller("showUnread", function($scope, $timeout, Article) {
   $scope.unreadArticles = [];
   $scope.articlesRejectedOrAccepted = 0;
 
-  $scope.init = function() {
+  $scope.unDecided = function() {
     Article.allUndecided().then(
       //success
       function(resp) {

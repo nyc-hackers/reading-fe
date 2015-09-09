@@ -1,8 +1,10 @@
-<section id='unread-cards' ng-controller='cards' ng-init='unreadCards()'>
+<section id='cards' ng-controller='cards' ng-init='unreadCards()'>
   <header>
+    <h1>Read Cards</h1>
+    <br>
     {{cards.length}} unread articles
   </header>
   <div class='cards'>
-    <card id='{{card.id}}' ng_class='card.labels[0].color' ng_repeat='card in cards'></card>
+    <card data-card='card' id='{{card.id}}' ng_class='card.labels[0].color' ng_repeat='card in cards'></card>
   </div>
 </section>

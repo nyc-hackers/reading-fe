@@ -131,15 +131,10 @@ section#main {
     border-bottom: 1px solid #CCCCCC;
   }
 
-  .card-color {
-    @include span-columns(4);
-    min-height: 50px;
-    text-align: center;
-    color: #333333;
-  }
+
 }
 
-#unread-cards {
+#cards {
   @include outer-container;
 
   header {
@@ -190,9 +185,17 @@ section#main {
         }
       }
 
-      a {
+      li a {
         @include button;
         margin: 5px 0;
+        border: none;
+      }
+
+      .card-color {
+        @include span-columns(6);
+        min-height: 50px;
+        text-align: center;
+        color: #333333;
       }
     }
   }

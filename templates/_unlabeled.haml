@@ -1,14 +1,7 @@
-%section#unlabeled-cards{'ng-controller' => "cards",
+%section#cards{'ng-controller' => "cards",
   "ng-init" => "unlabeledCards()"}
 
-  .card{ng_repeat: "card in cards"}
-    %h2
-      {{card.name}}
-      %br/
-      %a{ng_href: "{{ card.short_url }}", target: "_blank"} link
-    %a.card-color{ng_repeat: "color in cardLabels",
-      style: "background-color: {{color.hex}}",
-      data: { card_id: "{{card.id}}",
-              label_color: "{{color.color}}",
-              color_selector: true}}
-      {{color.name}}
+  %h1 Label Cards
+  .cards
+    %card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",
+      id: "{{card.id}}", data: {card: "card"}}

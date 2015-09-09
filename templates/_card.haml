@@ -1,6 +1,14 @@
 %h2
   {{card.name}}
 
+.label-choices{ng_show: "card.labels.length === 0"}
+  %a.card-color{ng_repeat: "color in cardLabels",
+    style: "background-color: {{color.hex}}",
+    data: { card_id: "{{card.id}}",
+            label_color: "{{color.color}}",
+            color_selector: true}}
+    {{color.name}}
+
 %ul.labels
   %li.label{ng_repeat: "label in card.labels", ng_class: "label.color"}
     {{ label.name }}

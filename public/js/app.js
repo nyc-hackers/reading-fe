@@ -3,12 +3,12 @@ var elFrontend = angular.module("elFrontend", ["ui.router"]);
 elFrontend.config(function($stateProvider, $urlRouterProvider,
                            $locationProvider) {
   // For any unmatched url, redirect to /state1
-  //$locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise("/unread");
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise("/");
   // Now set up the states
   $stateProvider
   .state("undecided", {
-    url: "/undecided",
+    url: "/",
     templateUrl: "/views/_undecided_articles.html",
   })
   .state("unlabeled", {
@@ -123,16 +123,39 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   };
 });
 ;elFrontend.directive("card", function(Article) {
+
   return {
     restrict: "E",
     templateUrl: "views/_card.html",
-    link: function(scope, elem, attrs) {
-      elem.bind("click", function(evt) {
-        evt.preventDefault();
-        cardId = attrs.id;
-        success();
-        Article.moveToDone(attrs.id).then(success, fail);
-      });
+    controllerAs: "cardCtrl",
+    scope: {
+      card: "="
+    },
+    controller: function($scope) {
+      this.cardId = "";
+      this.cardSelector = {}; // should be jq selector
+
+      $scope.cardLabels = [
+        {name: "Business, Product", color: "orange", hex: "#FF7200"},
+        {name: "Data Science", color: "green", hex: "#52a74F"},
+        {name: "Programming", color: "yellow", hex: "#FEDF83"}
+      ];
+
+      this.hideCard = function() {
+        this.cardSelector().hide();
+      };
+
+      this.showCard = function(card) {
+        this.cardSelector().show();
+      };
+
+      this.cardSelector = function() {
+        return $("#" + this.card.id);
+      };
+
+    },
+    link: function(scope, elem, attrs, cardCtrl) {
+      cardCtrl.card = scope.card;
     }
   };
 });
@@ -140,20 +163,19 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   return {
     restrict: "A",
     scope: {
-      cardId: "@",
       labelColor: "@"
     },
-    link: function(scope, elem, attrs) {
+    require: "^^card",
+    link: function(scope, elem, attrs, cardCtrl) {
       elem.bind("click", function(evt) {
         evt.preventDefault();
-        $(evt.currentTarget).parents(".card").first().hide();
-        Article.applyLabelToCard(scope.cardId, scope.labelColor).then(
-          function() {},
-          // error
-          function() {
-            $(evt.currentTarget).parents(".card").first().show();
-          }
-        );
+        cardCtrl.hideCard();
+
+        Article.applyLabelToCard(scope.cardId, scope.labelColor).
+          then(angular.noop(),
+               function(resp) {
+                 cardCtrl.showCard();
+               });
       });
     }
   };
@@ -208,7 +230,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   $scope.unreadArticles = [];
   $scope.articlesRejectedOrAccepted = 0;
 
-  $scope.init = function() {
+  $scope.unDecided = function() {
     Article.allUndecided().then(
       //success
       function(resp) {
@@ -247,12 +269,6 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   };
 });
 ;elFrontend.controller("cards", function($scope, Article) {
-
-  $scope.cardLabels = [
-    {name: "Business, Product", color: "orange", hex: "#FF7200"},
-    {name: "Data Science", color: "green", hex: "#52a74F"},
-    {name: "Programming", color: "yellow", hex: "#FEDF83"}
-  ];
 
   $scope.cards = [];
 
