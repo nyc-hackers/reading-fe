@@ -254,7 +254,6 @@ section#main {
   max-width: 68em;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
   margin: 20px auto; }
   section#main::after {
     clear: both;
@@ -416,12 +415,10 @@ section#main {
     float: left;
     display: block;
     margin-right: 2.3576515979%;
-    width: 100%; }
+    width: 100%;
+    text-align: center; }
     #cards header:last-child {
       margin-right: 0; }
-    @media screen and (max-width: 769px) {
-      #cards header {
-        text-align: center; } }
   #cards .cards {
     max-width: 68em;
     margin-left: auto;
@@ -446,7 +443,7 @@ section#main {
       margin-bottom: 15px;
       padding: 14px;
       width: 240px;
-      box-shadow: 0px 5px 15px #CCCCCC; }
+      box-shadow: 0px 5px 10px #EEEEEE; }
       #cards .cards card.doing {
         opacity: 0.7; }
       #cards .cards card.green {
@@ -455,9 +452,8 @@ section#main {
         border-top: 3px solid #FF7200; }
       #cards .cards card.yellow {
         border-top: 3px solid #FEDF83; }
-      @media screen and (max-width: 769px) {
-        #cards .cards card h2 {
-          text-align: center; } }
+      #cards .cards card h2 {
+        text-align: center; }
       #cards .cards card li a {
         border: 1px solid #076fe4;
         border-radius: 3px;
@@ -492,7 +488,8 @@ section#main {
         float: left;
         display: block;
         margin-right: 2.3576515979%;
-        width: 48.821174201%;
+        width: 100%;
+        margin-bottom: 5px;
         min-height: 50px;
         text-align: center;
         color: #333333; }

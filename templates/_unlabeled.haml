@@ -1,7 +1,0 @@
-%section#cards{'ng-controller' => "cards",
-  "ng-init" => "unlabeledCards()"}
-
-  %h1 Label Cards
-  .cards
-    %card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",
-      id: "{{card.id}}", data: {card: "card"}}

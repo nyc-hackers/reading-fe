@@ -18,10 +18,10 @@
   <li>
     <a class='trello' ng_href='{{ card.shortUrl }}' target='_blank'>View On Trello</a>
   </li>
-  <li>
+  <li ng_show='card.labels.length &gt; 0'>
     <a class='archive' data-archive-card data-id='{{card.id}}' ng_href='nothing'>Archive</a>
   </li>
-  <li>
+  <li ng_show='card.labels.length &gt; 0'>
     <a class='doing' data-id='{{card.id}}' data-move-to-doing>Move To Doing</a>
   </li>
 </ul>

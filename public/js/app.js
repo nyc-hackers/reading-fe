@@ -13,11 +13,48 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   })
   .state("unlabeled", {
     url: "/unlabeled",
-    templateUrl: "/views/_unlabeled.html"
+    templateUrl: "/views/_cards_parent.html",
+    controller: function($scope, Article) {
+      $scope.title = "Label Cards";
+      $scope.cards = [];
+
+      $scope.unLabeledCards = function() {
+        Article.allUnlabeled().then(
+          //success
+          function(resp) {
+          $scope.cards = resp.data;
+        },
+        // failure
+        function(data) {
+        }
+        );
+      };
+
+      $scope.unLabeledCards();
+    }
   })
+
   .state("unread", {
     url: "/unread",
-    templateUrl: "/views/_unread.html"
+    templateUrl: "/views/_cards_parent.html",
+    controller: function($scope, Article) {
+      $scope.title = "Read Cards";
+      $scope.cards = [];
+
+      $scope.unreadCards = function() {
+        Article.allUnread().then(
+          //success
+          function(resp) {
+          $scope.cards = resp.data;
+        },
+        // failure
+        function(data) {
+        }
+        );
+      };
+
+      $scope.unreadCards();
+    }
   });
 });
 ;elFrontend.constant("Backend", {
@@ -266,34 +303,5 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
                 $("#article_" + articleId).fadeIn("fast");
                 --$scope.articlesRejectedOrAccepted;
               });
-  };
-});
-;elFrontend.controller("cards", function($scope, Article) {
-
-  $scope.cards = [];
-
-  $scope.unlabeledCards = function() {
-    Article.allUnlabeled().then(
-      //success
-      function(resp) {
-        $scope.cards = resp.data;
-      },
-      //error
-      function(resp) {
-
-      }
-    );
-  };
-
-  $scope.unreadCards = function() {
-    Article.allUnread().then(
-      //success
-      function(resp) {
-        $scope.cards = resp.data;
-      },
-      // failure
-      function(data) {
-      }
-    );
   };
 });

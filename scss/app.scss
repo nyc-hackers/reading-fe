@@ -19,7 +19,6 @@ nav {
 
 section#main {
   @include outer-container;
-  width: 50%;
   margin: 20px auto;
 }
 
@@ -139,10 +138,7 @@ section#main {
 
   header {
     @include span-columns(12);
-
-    @include media($mobile) {
-      text-align: center;
-    }
+    text-align: center;
   }
 
   .cards {
@@ -155,13 +151,12 @@ section#main {
     justify-content: space-around;
     align-items: stetch;
 
-
     card {
       margin-right: 10px;
       margin-bottom: 15px;
       padding: 14px;
       width: 240px;
-      box-shadow: 0px 5px 15px #CCCCCC;
+      box-shadow: 0px 5px 10px #EEEEEE;
 
       &.doing {
         opacity: 0.7;
@@ -180,9 +175,7 @@ section#main {
       }
 
       h2 {
-        @include media($mobile) {
-          text-align: center;
-        }
+        text-align: center;
       }
 
       li a {
@@ -192,7 +185,8 @@ section#main {
       }
 
       .card-color {
-        @include span-columns(6);
+        @include span-columns(12);
+        margin-bottom: 5px;
         min-height: 50px;
         text-align: center;
         color: #333333;

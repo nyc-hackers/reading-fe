@@ -1,10 +1,8 @@
-%section#cards{'ng-controller' => "cards",
-  "ng-init" => "unreadCards()"}
-
+%section#cards
   %header
-    %h1 Read Cards
+    %h1 {{ title }}
     %br/
-    {{cards.length}} unread articles
+    {{cards.length}} cards
 
   .cards
     %card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",

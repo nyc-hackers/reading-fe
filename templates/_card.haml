@@ -18,7 +18,7 @@
     %a.article{ng_href: "{{ card.attachments[0].url }}", target: "_blank"} Read Article
   %li
     %a.trello{ng_href: "{{ card.shortUrl }}", target: "_blank"} View On Trello
-  %li
+  %li{ng_show: "card.labels.length > 0"}
     %a.archive{ng_href: "nothing", data: {archive_card: true, id: "{{card.id}}" }} Archive
-  %li
+  %li{ng_show: "card.labels.length > 0"}
     %a.doing{data: {move_to_doing: true, id: "{{card.id}}"}} Move To Doing
