@@ -5,6 +5,38 @@
 
 $mobile:  new-breakpoint(max-width 769px 12);
 
+@mixin flex-display($value) {
+  @if $value == "flex" {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+  } @else if $value == "inline-flex" {
+
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+}
+
+@mixin flex-direction($value) {
+  @include prefixer(flex-direction, $value, webkit moz ms spec);
+}
+
+@mixin flex-wrap($value) {
+  @include prefixer(flex-wrap, $value, webkit moz ms spec);
+}
+
+@mixin align-items($value) {
+  @include prefixer(align-items, $value, webkit moz ms spec);
+}
+
+@mixin justify-content($value) {
+  @include prefixer(justify-content, $value, webkit moz ms spec);
+}
+
+
 nav {
   @include outer-container;
   width: 50%;
@@ -144,12 +176,11 @@ section#main {
   .cards {
     @include outer-container;
     @include span-columns(12);
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: stetch;
+    @include flex-display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+    @include align-items(stetch);
 
     card {
       margin-right: 10px;

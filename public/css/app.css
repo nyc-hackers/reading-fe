@@ -427,10 +427,25 @@ section#main {
     display: block;
     margin-right: 2.3576515979%;
     width: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
     justify-content: space-around;
+    -webkit-align-items: stetch;
+    -moz-align-items: stetch;
+    -ms-align-items: stetch;
     align-items: stetch; }
     #cards .cards::after {
       clear: both;

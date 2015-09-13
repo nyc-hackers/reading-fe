@@ -10,7 +10,7 @@ elFrontend.directive("colorSelector", function(Article) {
         evt.preventDefault();
         cardCtrl.hideCard();
 
-        Article.applyLabelToCard(scope.cardId, scope.labelColor).
+        Article.applyLabelToCard(cardCtrl.card.id, scope.labelColor).
           then(angular.noop(),
                function(resp) {
                  cardCtrl.showCard();
