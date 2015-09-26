@@ -110,7 +110,6 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
       },
       // failure
       function(data) {
-        console.warn("all articles", data);
         $scope.communicatingWithServer = false;
       }
     );
