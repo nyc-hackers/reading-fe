@@ -58,7 +58,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   });
 });
 ;elFrontend.constant("Backend", {
-  host: "https://email-listicle.herokuapp.com/"
+  host: "http://10.1.2.244:4001",
 });
 ;elFrontend.factory("Article", function($http, Backend) {
   var host = Backend.host;
