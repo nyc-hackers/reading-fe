@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Articles To Read ARR
+    %title Articles To Read
     %link{rel: "stylesheet", href: "/public/css/app.css", media: "all"}
 
     %meta{name:"viewport", content: "width=device-width, initial-scale=1"}
@@ -10,6 +10,7 @@
     %nav
       %a{"ui-sref" => "undecided"} Accept/Reject
       %a{"ui-sref" => "unlabeled"} Unlabeled Cards
+      %a{"ui-sref" => "unread"} Unread Cards
 
     %section#main
       %ui-view

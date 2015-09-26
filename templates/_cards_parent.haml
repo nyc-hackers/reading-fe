@@ -1,0 +1,11 @@
+%section#cards
+  %header
+    %h1 {{ title }}
+    %br/
+    {{cards.length}} cards
+
+  .cards
+    %card{ng_repeat: "card in cards", ng_class: "card.labels[0].color",
+      id: "{{card.id}}", data: {card: "card"}}
+
+

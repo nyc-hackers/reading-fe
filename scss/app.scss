@@ -3,7 +3,39 @@
 @import "base/base";
 @import "progress_bar";
 
-$mobile:  new-breakpoint(max-width 767px 12);
+$mobile:  new-breakpoint(max-width 769px 12);
+
+@mixin flex-display($value) {
+  @if $value == "flex" {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+  } @else if $value == "inline-flex" {
+
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+}
+
+@mixin flex-direction($value) {
+  @include prefixer(flex-direction, $value, webkit moz ms spec);
+}
+
+@mixin flex-wrap($value) {
+  @include prefixer(flex-wrap, $value, webkit moz ms spec);
+}
+
+@mixin align-items($value) {
+  @include prefixer(align-items, $value, webkit moz ms spec);
+}
+
+@mixin justify-content($value) {
+  @include prefixer(justify-content, $value, webkit moz ms spec);
+}
+
 
 nav {
   @include outer-container;
@@ -15,6 +47,11 @@ nav {
     padding: 10px 20px;
     font-size: small;
   }
+}
+
+section#main {
+  @include outer-container;
+  margin: 20px auto;
 }
 
 #article-list {
@@ -125,10 +162,66 @@ nav {
     border-bottom: 1px solid #CCCCCC;
   }
 
-  .card-color {
-    @include span-columns(4);
-    min-height: 50px;
+
+}
+
+#cards {
+  @include outer-container;
+
+  header {
+    @include span-columns(12);
     text-align: center;
-    color: #333333;
+  }
+
+  .cards {
+    @include outer-container;
+    @include span-columns(12);
+    @include flex-display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+    @include align-items(stetch);
+
+    card {
+      margin-right: 10px;
+      margin-bottom: 15px;
+      padding: 14px;
+      width: 240px;
+      box-shadow: 0px 5px 10px #EEEEEE;
+
+      &.doing {
+        opacity: 0.7;
+      }
+
+      &.green {
+        border-top: 3px solid #52A74F;
+      }
+
+      &.orange {
+        border-top: 3px solid #FF7200;
+      }
+
+      &.yellow {
+        border-top: 3px solid #FEDF83;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      li a {
+        @include button;
+        margin: 5px 0;
+        border: none;
+      }
+
+      .card-color {
+        @include span-columns(12);
+        margin-bottom: 5px;
+        min-height: 50px;
+        text-align: center;
+        color: #333333;
+      }
+    }
   }
 }
