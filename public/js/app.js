@@ -55,6 +55,12 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
 
       $scope.unreadCards();
     }
+  })
+
+  .state("login", {
+    url: "/login",
+    templateUrl: "/views/_login.html",
+    controller: function($scope) {}
   });
 });
 ;elFrontend.constant("Backend", {
