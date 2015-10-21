@@ -64,7 +64,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   });
 
   $authProvider.google({
-    clientId: 'Google Client ID'
+    clientId: '1056669470112-m15b11qnmjcbus1t72obg56in98m8uf8.apps.googleusercontent.com'
   });
 
   $authProvider.github({
