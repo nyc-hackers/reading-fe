@@ -1,7 +1,16 @@
-var elFrontend = angular.module("elFrontend", ["ui.router"]);
+var elFrontend = angular.module("elFrontend", ["ui.router", "satellizer"]);
 
-elFrontend.config(function($stateProvider, $urlRouterProvider,
+elFrontend.config(function($authProvider, $stateProvider, $urlRouterProvider,
                            $locationProvider) {
+
+  // Auth stuffs
+  $authProvider.google({
+    clientId: 'Google Client ID'
+  });
+
+  $authProvider.github({
+    clientId: 'GitHub Client ID'
+  });
   // For any unmatched url, redirect to /state1
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise("/");
