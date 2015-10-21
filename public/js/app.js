@@ -60,7 +60,7 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
   .state("login", {
     url: "/login",
     templateUrl: "/views/_login.html",
-    controller: function($scope) {}
+    controller: 'LoginCtrl'
   });
 
   $authProvider.google({
