@@ -18,5 +18,8 @@
     "angular",
     "bourbon",
     "neat"
-  ]
+  ],
+  "dependencies": {
+    "satellizer": "^0.12.5"
+  }
 }
