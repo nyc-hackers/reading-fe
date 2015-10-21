@@ -1,7 +1,7 @@
-var elFrontend = angular.module("elFrontend", ["ui.router"]);
+var elFrontend = angular.module("elFrontend", ["ui.router", "satellizer"]);
 
 elFrontend.config(function($stateProvider, $urlRouterProvider,
-                           $locationProvider) {
+                           $locationProvider, $authProvider) {
   // For any unmatched url, redirect to /state1
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise("/");
@@ -62,6 +62,15 @@ elFrontend.config(function($stateProvider, $urlRouterProvider,
     templateUrl: "/views/_login.html",
     controller: function($scope) {}
   });
+
+  $authProvider.google({
+    clientId: 'Google Client ID'
+  });
+
+  $authProvider.github({
+    clientId: 'GitHub Client ID'
+  });
+
 });
 ;elFrontend.constant("Backend", {
   host: "http://10.1.2.244:4001",
