@@ -1,4 +1,4 @@
-var elFrontend = angular.module("elFrontend", ["ui.router", "satellizer"]);
+var elFrontend = angular.module("elFrontend", ["ui.router", "satellizer", "ngMessages"]);
 
 elFrontend.config(function($stateProvider, $urlRouterProvider,
                            $locationProvider, $authProvider) {
