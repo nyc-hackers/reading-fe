@@ -18,12 +18,8 @@
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
-<<<<<<< HEAD
     "neat": "^1.2.2",
     "phantomjs": "^1.9.18"
-=======
-    "neat": "^1.2.2"
->>>>>>> adds grunt-karma, phantomjs, and angular-mocks to project
   },
   "prodDependencies": [
     "angular",
