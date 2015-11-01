@@ -89,6 +89,21 @@ module.exports = function(grunt) {
           }
         })
       }
+    },
+    karma: {
+      unit: {
+        options: {
+          frameworks: ["jasmine"],
+          singleRun: true,
+          browsers: ["PhantomJS"],
+          files: [
+            "node_modules/angular/angular.js",
+            "bower_components/angular-mocks/angular-mocks.js",
+            "public/js/app.js",
+            "tests/*.js"
+          ]
+        }
+      }
     }
   });
 
@@ -101,6 +116,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-haml");
   grunt.loadNpmTasks("grunt-jscs");
+  grunt.loadNpmTasks("grunt-karma");
 
   grunt.registerTask("default",
                      ["jshint", "concat", "sass", "haml", "jscs"]);
