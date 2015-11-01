@@ -120,5 +120,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default",
                      ["jshint", "concat", "sass", "haml", "jscs"]);
+  grunt.registerTask("test", ["jshint", "karma"]);
 
 };
