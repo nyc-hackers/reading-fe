@@ -98,7 +98,7 @@ module.exports = function(grunt) {
           browsers: ["PhantomJS"],
           files: [
             "node_modules/angular/angular.js",
-            "bower_components/angular-mocks/angular-mocks.js",
+            "node_modules/angular-mocks/angular-mocks.js",
             "public/js/app.js",
             "tests/*.js"
           ]
